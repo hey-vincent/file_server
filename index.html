@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workbench</title>
+
+    <style>
+        body{
+            font-family:  "BlinkMacSystemFont";
+        }
+
+        .item{
+            background-color: white;
+            border-radius: 3px;
+            height: 30px;
+            margin-top: 0.875rem;
+
+        }
+        .item_a{
+            float: left;
+            line-height: 30px;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        a.visited,
+        a {
+            color: blue;
+        }
+
+        .category_icon{
+            float: left;
+            height: 24px;
+            width:24px;
+        }
+
+        @media all and (max-width: 991px){
+            .item_a{
+                float: left;
+                line-height: 2.5rem;
+                text-decoration: none;
+                margin-left: 20px;
+                font-size: 2.5rem;
+            }
+
+            .category_icon{
+                float: left;
+                height: 2.5rem;
+                width:2.5rem;
+            }
+
+            .item{
+                height: 2.875rem;
+            }
+
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="item">
+    <a class="item_a" href="/Shared/">
+    
+    <img class="category_icon" src="/static/resource/folder.png">
+    
+    Shared</a></div>
+
+<div class="item">
+    <a class="item_a" href="/ant_mac/">
+    
+    <img class="category_icon" src="/static/resource/folder.png">
+    
+    ant_mac</a></div>
+
+</body>
+</html>

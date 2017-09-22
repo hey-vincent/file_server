@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   <script src="/static/resource/jquery-3.2.1.min.js"></script>
+
+    <title>Workbench</title>
+
+    <style>
+        body{
+            font-family:  "BlinkMacSystemFont";
+            font-size: 13px;
+            background: black;
+            color: chartreuse;
+        }
+
+        .item{
+            background-color: white;
+            border-radius: 3px;
+            height: 30px;
+            /*margin-top: 0.875rem;*/
+
+        }
+        .item_a{
+            float: left;
+            line-height: 30px;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        a.visited,
+        a {
+            color: blue;
+        }
+
+        .category_icon{
+            float: left;
+            height: 24px;
+            width:24px;
+        }
+
+        @media all and (max-width: 991px){
+            .item_a{
+                float: left;
+                line-height: 2.5rem;
+                text-decoration: none;
+                margin-left: 20px;
+                font-size: 2.5rem;
+            }
+
+            .category_icon{
+                float: left;
+                height: 2.5rem;
+                width:2.5rem;
+            }
+
+            .item{
+                height: 2.875rem;
+            }
+
+            .child_dir{
+                padding-left: 40px;
+            }
+
+        }
+
+        .file_elm{
+            margin-left: 2rem;
+        }
+    </style>
+
+</head>
+<body>
+<!--{{range $i, $v := .}}-->
+<!--<div class="item">-->
+    <!--<a class="item_a" href="{{$v.Src}}">-->
+    <!--{{if $v.IsDir}}-->
+    <!--<img class="category_icon" src="/static/resource/folder.png">-->
+    <!--{{else}}-->
+    <!--<img class="category_icon" src="/static/resource/sheet.png">-->
+    <!--{{end}}-->
+    <!--{{$v.Name}}</a></div>-->
+<!--{{end}}-->
+
+
+
+<div id="github" class="file_elm" onclick="get(this)">Root</div>
+
+</body>
+
+<script type="text/javascript">
+
+    function get(handle){
+        var idVal = $(handle).attr('id')
+        var idSel = '#' + idVal
+            $.ajax({
+                method: "POST",
+                url: "/file/",
+                data: { path: idVal}
+            }).done(function( msg ) {
+                var data = JSON.parse(msg)
+                var item = '';
+                for(var index in data){
+                    var one = data[index]
+                    item  += '<div id="'+ one.Dir + one.Name +'" class="file_elm" onclick="get(this)">'+ one.Name +'</div>';
+                }
+                $(handle).append(item)
+            })
+    }
+
+
+</script>
+</html>
